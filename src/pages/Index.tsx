@@ -111,7 +111,7 @@ const Index = () => {
 
 
   return (
-    <div className="bg-white flex flex-col overflow-hidden items-stretch mt-[83px] max-md:mt-10">
+    <div className="bg-white flex flex-col overflow-hidden items-stretch mt-[83px] max-md:mt-0">
       {segments.length === 0 ? (
         <NoContent messageKey="customPage.noContentMessage" />
       ) : (

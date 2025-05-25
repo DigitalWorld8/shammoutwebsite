@@ -3,6 +3,7 @@ import { useIsMobile } from '@/hooks/use-mobile'
 import { MainNavigation } from '../navigation/MainNavigation'
 import { MobileBottomNav } from '../navigation/MobileBottomNav'
 import { useAppSelector } from '@/redux/useAppSelector'
+import LanguageDropdown from './LanguageDropdown'
 
 const Header: React.FC = () => {
     const isMobile = useIsMobile();

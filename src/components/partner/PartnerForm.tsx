@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { postDataService } from "@/redux/services/pagesService";
 import { useTranslation } from "react-i18next";
 import CountrySelector from "./CountrySelector";
+import { countries } from "@/lib/countries";
 
 interface FormValues {
     name: string;
@@ -43,7 +44,7 @@ const PartnerForm: React.FC<PartnerFormProps> = ({ phone, email }) => {
         name: "",
         email: email || "",
         phone: phone || "",
-        country: "SY",
+        country: 'SY',
         businessDescription: "",
         services: {
             automotive: false,
@@ -90,10 +91,10 @@ const PartnerForm: React.FC<PartnerFormProps> = ({ phone, email }) => {
 
             const servicesString = selectedServices.join(',');
 
-            const { email, phone, businessDescription } = values;
+            const { email, phone, businessDescription, country } = values;
             dispatch(postDataService({
                 email,
-                phoneNumber: phone,
+                phoneNumber: country + phone,
                 description: businessDescription,
                 services: servicesString,
             }));
@@ -143,6 +144,7 @@ const PartnerForm: React.FC<PartnerFormProps> = ({ phone, email }) => {
             ],
         },
     ];
+    console.log('phone', formik.values.country);
 
 
     return (
@@ -213,7 +215,7 @@ const PartnerForm: React.FC<PartnerFormProps> = ({ phone, email }) => {
                                     value={formik.values.phone}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                    placeholder={t("partnerForm.phonePlaceholder")}
+                                    placeholder={`${countries.find((c) => c.code === formik.values.country)?.callSign} 000-0000`}
                                     style={{
                                         direction: isEn ? 'ltr' : "rtl"
                                     }}

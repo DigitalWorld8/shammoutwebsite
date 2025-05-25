@@ -60,9 +60,9 @@ export const Footer: React.FC = () => {
               <div className=" flex items-center gap-[21px] mt-10 max-md:mr-[5px]">
                 <div className="self-stretch my-auto">
                   <div
-            style={{direction:"ltr"}}
-                  
-                  className="text-white text-[13px] font-bold leading-none">
+                    style={{ direction: "ltr" }}
+
+                    className="text-white text-[13px] font-bold leading-none">
                     {phones}
                   </div>
                   <div className="text-[rgba(175,175,175,1)] text-[9px] font-normal leading-none mt-[7px]">
@@ -86,9 +86,9 @@ export const Footer: React.FC = () => {
                   <div className="w-[30%] max-md:w-full max-md:ml-0">
                     <div className="flex flex-col items-stretch text-xs max-md:mt-10">
                       <h3 className="text-white font-bold leading-none uppercase cursor-pointer" onClick={() => {
-                        navigate('/')
+                        navigate(`/${pos}/${language}/`)
                       }}>
-                        {about?.titleKey }
+                        {about?.titleKey}
                       </h3>
                       <nav className="text-[rgba(175,175,175,1)] font-normal leading-[26px] mt-1.5">
                         {about?.linkKeys?.map((link, index) => (
@@ -106,7 +106,7 @@ export const Footer: React.FC = () => {
                   <div className="w-2/5 ml-5 max-md:w-full max-md:ml-0">
                     <div className="flex grow flex-col items-stretch text-xs max-md:mt-10">
                       <h3 className="text-white font-bold leading-none uppercase cursor-pointer" onClick={() => {
-                        navigate('/businesses')
+                        navigate(`/${pos}/${language}/businesses`)
                       }}>
                         {businesses?.titleKey || t("footer.ourBusinesses")}
                       </h3>
@@ -127,7 +127,7 @@ export const Footer: React.FC = () => {
                   <div className="w-[30%] ml-5 max-md:w-full max-md:ml-0">
                     <div className="flex flex-col items-stretch text-xs max-md:mt-10">
                       <h3 className="text-white font-bold leading-none uppercase cursor-pointer" onClick={() => {
-                        navigate('/contact')
+                        navigate(`/${pos}/${language}/contact`)
                       }}>
                         {contact?.titleKey || t("footer.contactUs")}
                       </h3>
@@ -160,7 +160,7 @@ export const Footer: React.FC = () => {
                   ))}
                 </div> */}
                 <div className="grow shrink w-[286px]">
-                  {copyright} 
+                  {copyright}
                 </div>
               </div>
             </div>

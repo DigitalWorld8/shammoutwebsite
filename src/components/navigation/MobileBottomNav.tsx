@@ -1,18 +1,30 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Home, Building2, Clock, Users2, Mail } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Home, Building2, Clock, Users2, Mail, Globe } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useScrollToSection } from "@/hooks/use-scroll-to-section";
 import { useAppSelector } from "@/redux/useAppSelector";
+import LanguageDropdown from "../layout/LanguageDropdown";
+import { useAppDispatch } from "@/redux/store";
+import { SetLang } from "@/redux/slices/pagesSlice";
 
 interface MobileBottomNavProps { }
 
 export const MobileBottomNav: React.FC<MobileBottomNavProps> = () => {
   const scrollToSection = useScrollToSection();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+
   const location = useLocation();
-  const { pageContent, language, staticComp } = useAppSelector(state => state.pages);
+  const { pos, language, staticComp } = useAppSelector(state => state.pages);
   const header = staticComp?.filter((c) => c.language === language)?.find((c) => c.type === 'header')
+
+  const pathname = location.pathname;
+  const urlSegments = pathname.split('/').filter(Boolean);
+  const languageUrl = urlSegments[1] || 'english'
+  const isEn = languageUrl === 'english'
+  const pageUrlName = urlSegments[2] || '';
 
   let headerLabels: Record<string, string> = {};
   if (header?.content) {
@@ -36,16 +48,24 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = () => {
     { to: '/contact', label: headerLabels.contact || t('contact'), id: "about", icon: Building2 },
   ];
 
+  const changeLanguage = () => {
+    let language = languageUrl === "english" ? "arabic" : "english"
+    i18n.changeLanguage(isEn ? "ar" : "en")
+    dispatch(SetLang(language))
+    navigate(`/${pos}/${language}/${pageUrlName}`);
+  }
+
+
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-t border-gray-200">
+    <nav className="fixed bottom-0  left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-t border-gray-200">
+
       <div className="flex justify-around items-center py-2">
         {navLinks.map(({ id, to, label, icon: Icon }) => {
           const isActive = location.pathname === to;
-
           return (
             <Link
               key={id}
-              to={to}
+              to={`/${pos}/${language}${to}`}
               className={`flex flex-col items-center p-2 text-xs font-medium transition-all duration-200
                 ${isActive
                   ? "text-[rgba(204,31,65,1)] font-semibold scale-105"
@@ -66,7 +86,23 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = () => {
             </Link>
           );
         })}
+        <Link
+          to="#"
+          onClick={(e) => {
+            e.preventDefault();
+            changeLanguage()
+          }}
+          className={`flex flex-col items-center p-2 text-xs font-medium transition-all duration-200
+    text-[rgba(30,57,94,1)] hover:text-[rgba(204,31,65,1)]`}
+        >
+          <div className="h-10 w-10 flex items-center justify-center rounded-full">
+            <Globe className="h-6 w-6 mb-0.5" />
+          </div>
+          {isEn ? 'AR' : 'EN'}
+        </Link>
       </div>
+
+
     </nav>
   );
 };
