@@ -17,6 +17,7 @@ import { getSubPathService } from "./redux/services/pagesService";
 import OurBusinesses from "./pages/our-businses";
 import { useAppSelector } from "./redux/useAppSelector";
 import { SetLang } from "./redux/slices/pagesSlice";
+import { setupInterceptors } from "./axios/axioxConfig";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,9 @@ const AppRoutes = () => {
   const lang = i18n.language === "en" ? "english" : "arabic"
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setupInterceptors(navigate);
+  }, [navigate]);
   const { pos, language } = useAppSelector(state => state.pages)
   const { isLoading } = useSelector((state: RootState) => state.pages);
   const dispatch = useDispatch<AppDispatch>();

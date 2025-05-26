@@ -21,37 +21,38 @@ export const Values: React.FC = ({ data, type }) => {
       className="bg-[rgba(30,57,94,1)] self-stretch flex w-full flex-col items-center text-white justify-center mt-[83px] max-md:mt-10  max-md:px-5 px-20 py-[71px] max-md:max-w-full"
     >
       <Container>
-        <div className="flex w-full  flex-col items-stretch max-md:max-w-full">
+        <div className="flex w-full flex-col items-stretch max-md:max-w-full max-sm:items-center max-sm:text-center">
           <h2 className="text-[32px] font-extrabold leading-[1.1] tracking-[-0.96px]">
             {titleItem?.title}
           </h2>
-          <div className="flex gap-5 flex-wrap justify-between mt-[62px] max-md:max-w-full max-md:mt-10">
+
+          <div className="flex gap-5 flex-wrap justify-between mt-[62px] max-md:max-w-full max-md:mt-10 max-sm:justify-center">
             {data?.filter((v) => v.key !== 'title')?.map((item, index) => (
               <React.Fragment key={item.key}>
-                <div className="flex flex-col max-w-[30%] min-w-[250px]">
+                <div className="flex flex-col max-w-[30%] min-w-[250px] max-sm:items-center max-sm:text-center">
                   <img
-                    src={item.logo || icons[0]}
+                    src={item.logo}
                     alt={`${item.title} icon`}
                     className="aspect-[1] object-contain w-[92px]"
                   />
                   <h3 className="text-xl font-extrabold leading-loose tracking-[-0.6px] mt-[17px]">
                     {item.title}
                   </h3>
-                  <p className="text-sm font-normal leading-[21px] tracking-[-0.42px] self-stretch mt-[21px]">
+                  <p className="text-sm font-normal leading-[21px] tracking-[-0.42px] self-stretch mt-[21px] max-sm:self-center">
                     {item.description}
                   </p>
                 </div>
+
                 {index < data.length - 2 && (
                   <div
-                    className={`border-[rgba(255,255,255,0.5)] border-solid w-px shrink-0 h-[200px] mt-7 ${
-                      isRTL ? "border-l" : "border-r"
-                    }`}
+                    className={`border-[rgba(255,255,255,0.5)] border-solid w-px shrink-0 h-[200px] mt-7 ${isRTL ? "border-l" : "border-r"} max-sm:hidden`}
                   />
                 )}
               </React.Fragment>
             ))}
           </div>
         </div>
+
       </Container>
     </section>
   );

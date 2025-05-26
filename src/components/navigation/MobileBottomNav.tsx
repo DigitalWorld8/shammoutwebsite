@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Home, Building2, Clock, Users2, Mail, Globe } from "lucide-react";
+import { Home, Building2, Clock, Users2, Mail, Globe, Info } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useScrollToSection } from "@/hooks/use-scroll-to-section";
 import { useAppSelector } from "@/redux/useAppSelector";
@@ -42,10 +42,10 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = () => {
   // ];
   const navLinks = [
     { to: '/', label: headerLabels.home || t('home'), id: "home", icon: Home },
-    // { to: '/about', label: headerLabels.about || t('aboutus') },
-    { to: '/businesses', label: headerLabels.businesses || t('businesses'), id: "businesses", icon: Users2 },
-    { to: '/partner', label: headerLabels.partner || t('partnerus'), id: "partner", icon: Mail },
-    { to: '/contact', label: headerLabels.contact || t('contact'), id: "about", icon: Building2 },
+    // { to: '/about', label: headerLabels.about || "", id: "about",  icon: Info },
+    { to: '/businesses', label: headerLabels.businesses || "", id: "businesses", icon: Users2 },
+    { to: '/partner', label: headerLabels.partner || "", id: "partner", icon: Mail },
+    { to: '/contact', label: headerLabels.contact || "", id: "about", icon: Building2 },
   ];
 
   const changeLanguage = () => {

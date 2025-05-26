@@ -11,7 +11,24 @@ interface MainNavigationProps {
 export const MainNavigation: React.FC<MainNavigationProps> = ({
     isMobile,
 }) => {
-    const { pos, language } = useAppSelector(state => state.pages)
+    const { pos, language, staticComp } = useAppSelector(state => state.pages)
+    const pathname = location.pathname; // e.g. "/sy/arabic/home"
+
+    const urlSegments = pathname.split('/').filter(Boolean); // ["sy", "arabic", "home"]
+
+    const languageUrl = urlSegments[1] || 'english'
+    const header = staticComp?.filter((c) => c.language === languageUrl)?.find((c) => c.type === 'header')
+    let headerLabels: Record<string, string> = {};
+    if (header?.content) {
+        try {
+            headerLabels = JSON.parse(header.content);
+
+        } catch (error) {
+            console.error('Failed to parse header content', error);
+        }
+    }
+
+    console.log('header', header);
 
     return (
         <>
@@ -20,13 +37,13 @@ export const MainNavigation: React.FC<MainNavigationProps> = ({
                     <div className="max-w-[1184px] w-full mx-auto flex justify-between items-center">
                         <Link to={`/${pos}/${language}/`}>
                             <img
-                                src="https://cdn.builder.io/api/v1/image/assets/0088fdfbc5f845fe86a1c89db6aed806/ef55696ff67ea3de1f900af9552cd47587ba243e"
+                                src={headerLabels?.logo}
                                 alt="Shammout Group Logo"
                                 className="aspect-[3.1] object-contain w-[120px] md:w-[167px]"
                             />
                         </Link>
 
-                        <DesktopNavigation />
+                        <DesktopNavigation header={header} headerLabels={headerLabels} />
                     </div>
                 </nav>
             )}

@@ -11,6 +11,7 @@ import { postDataService } from "@/redux/services/pagesService";
 import { useTranslation } from "react-i18next";
 import CountrySelector from "./CountrySelector";
 import { countries } from "@/lib/countries";
+import { useAppDispatch } from "@/redux/store";
 
 interface FormValues {
     name: string;
@@ -35,16 +36,38 @@ interface PartnerFormProps {
 }
 
 const PartnerForm: React.FC<PartnerFormProps> = ({ phone, email }) => {
+
+    // Extract country code from full phone number (e.g., "+963935387582")
+    function getCountryByPhone(phone: string) {
+        // Sort countries descending by callSign length to match longest prefix first
+        const sortedCountries = [...countries].sort((a, b) => b.callSign.length - a.callSign.length);
+
+        // Find the first country where the phone number starts with its callSign
+        return sortedCountries.find(country => phone.startsWith(country.callSign));
+    }
+    function stripCountryCode(phone: string, countryCode: string) {
+        return phone.replace(countryCode, "");
+    }
+    // Usage
+    const matchedCountry = getCountryByPhone(phone);
+    const localPhone = matchedCountry ? stripCountryCode(phone || "", matchedCountry.callSign) : phone;
+
+    if (matchedCountry) {
+        console.log("Matched country:", matchedCountry.name, "Code:", matchedCountry.code);
+    } else {
+        console.log("No match found.");
+    }
+
     const { t, i18n } = useTranslation("");
     const isEn = i18n.language === "en"
     const [showModal, setShowModal] = React.useState(false);
     const recaptchaRef = useRef<ReCAPTCHA | null>(null);
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const initialValues: FormValues = {
         name: "",
         email: email || "",
-        phone: phone || "",
-        country: 'SY',
+        phone: localPhone || "",
+        country: matchedCountry?.code || 'SY',
         businessDescription: "",
         services: {
             automotive: false,
@@ -92,14 +115,18 @@ const PartnerForm: React.FC<PartnerFormProps> = ({ phone, email }) => {
             const servicesString = selectedServices.join(',');
 
             const { email, phone, businessDescription, country } = values;
+            const code = countries.find((c) => c.code === country)?.callSign
             dispatch(postDataService({
                 email,
-                phoneNumber: country + phone,
+                phoneNumber: code + phone,
                 description: businessDescription,
                 services: servicesString,
-            }));
+            })).then((action) => {
+                if (postDataService.fulfilled.match(action)) {
+                    setShowModal(false)
+                }
+            })
 
-            setShowModal(true);
         }
 
     });
@@ -144,7 +171,6 @@ const PartnerForm: React.FC<PartnerFormProps> = ({ phone, email }) => {
             ],
         },
     ];
-    console.log('phone', formik.values.country);
 
 
     return (
@@ -207,7 +233,7 @@ const PartnerForm: React.FC<PartnerFormProps> = ({ phone, email }) => {
 
                             </label>
                             <div className="items-stretch shadow-[0px_1.352px_2.703px_0px_rgba(16,24,40,0.05)] bg-white flex w-full overflow-hidden text-[22px] font-normal flex-wrap mt-2 rounded-[10.813px] max-md:max-w-full border border-gray-200">
-                                <div className="w-[150px] border-r border-gray-200">
+                                <div className="w-[200px] border-r border-gray-200">
                                     <CountrySelector formik={formik} />
                                 </div>
                                 <input

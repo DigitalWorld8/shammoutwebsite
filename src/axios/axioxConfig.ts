@@ -66,31 +66,49 @@ const setupInterceptors = (navigate: NavigateFunction) => {
                         navigate('/auth/boxed-signin');
                         break;
 
-                    case 400:
-                        if (data?.data && typeof data.data === 'object') {
-                            const messages: string[] = [];
+case 400:
+    console.log('Received 400 error', data);
 
-                            for (const key in data.data) {
-                                if (Array.isArray(data.data[key])) {
-                                    data.data[key].forEach((msg: string) => {
-                                        messages.push(msg);
-                                    });
-                                }
-                            }
+    if (data?.error?.data && typeof data?.error?.data === 'object') {
+        console.log('data.data is an object:', data.data);
 
-                            Toast.fire({
-                                icon: 'error',
-                                title: messages.length
-                                    ? messages.join('\n')
-                                    : data?.message || 'Validation failed',
-                            });
-                        } else {
-                            Toast.fire({
-                                icon: 'error',
-                                title: data?.message || 'Bad request.',
-                            });
-                        }
-                        break;
+        const messages: string[] = [];
+
+        Object.entries(data?.error?.data).forEach(([key, value]) => {
+            console.log(`Processing field: ${key}, value:`, value);
+
+            if (Array.isArray(value)) {
+                value.forEach((msg: string, index: number) => {
+                    console.log(`Adding message [${index}] for ${key}: ${msg}`);
+                    messages.push(`${msg}`);
+                });
+            } else {
+                console.log(`Value for ${key} is not an array`, value);
+            }
+        });
+
+        console.log('Final compiled messages array:', messages);
+
+        Toast.fire({
+            icon: 'error',
+            title: messages.length
+                ? messages.join('\n')
+                : data?.message || 'Validation failed',
+        });
+
+        console.log('Toast displayed with validation messages');
+    } else {
+        console.warn('data.data is not an object. Fallback Toast triggered.', data);
+
+        Toast.fire({
+            icon: 'error',
+            title: data?.message || 'Something went wrong',
+        });
+
+        console.log('Fallback Toast displayed');
+    }
+    break;
+
 
                     case 500:
                         Toast.fire({

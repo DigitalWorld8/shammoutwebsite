@@ -27,7 +27,18 @@ import { SetLang, SetPos } from "@/redux/slices/pagesSlice";
 
 const Index = () => {
   useScrollToTop();
-  const { phone, email } = useParams();
+  const params = useParams();
+
+  const paramPath = params['*']; // get the wildcard param string
+  let email = '';
+  let phone = '';
+
+  if (paramPath) {
+    const parts = paramPath.split('/');
+    email = parts[3] || '';  // assuming email is at index 3
+    phone = parts[4] || '';  // assuming phone is at index 4
+  }
+
   const { pageContent, pos, language } = useAppSelector(state => state.pages);
   const [content, setContetnt] = useState([])
   useEffect(() => {
@@ -38,7 +49,6 @@ const Index = () => {
   const { i18n } = useTranslation();
 
   const pathname = location.pathname; // e.g. "/sy/arabic/home"
-  console.log('pathname', pathname);
 
   const urlSegments = pathname.split('/').filter(Boolean); // ["sy", "arabic", "home"]
 
@@ -48,10 +58,7 @@ const Index = () => {
   const pageUrlName = urlSegments[2] || '/';
 
   useEffect(() => {
-    // Sync i18n language
-    // if (i18n.language !== language) {
-    //   i18n.changeLanguage(language === "english" ? "en" : "ar");
-    // }
+    window.scroll(0, 0)
 
     // Update store with pos and lang
     dispatch(SetPos(pos));
@@ -94,6 +101,7 @@ const Index = () => {
       case 'Partner Form':
         return <PartnerBanner data={data} type={type} />;
       case 'Reach Us Section':
+      case 'Reach Us Section with cta':
         return <ReachUsSection title={title} description={description} data={data} type={type} />;
       case 'Assistance Section':
         return <AssistanceSection data={data} type={type} />;

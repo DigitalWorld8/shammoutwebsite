@@ -29,7 +29,7 @@ export const About: React.FC = ({ data, description, title, type }) => {
             <img
               src={growthData?.logo || "/placeholder.jpg"}
               alt="Growth & Leadership"
-              className="w-full h-full object-cover aspect-[1.2] rounded-xl"
+              className="w-full h-full object-cover aspect-[0.8] sm:aspect-[1.2] rounded-xl"
             />
             <div className="absolute bottom-0 left-0 right-0 bg-[rgba(204,31,65,1)] p-6 text-white rounded-t-xl">
               <h3 className="text-xl font-bold mb-3">

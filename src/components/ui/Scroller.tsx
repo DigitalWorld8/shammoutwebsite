@@ -121,7 +121,6 @@ export const Scroller: React.FC<ScrollerProps> = ({ sections }) => {
             window.removeEventListener("mouseup", handleDragEnd);
         };
     }, [isDragging, dragStartY, dragCurrentTop]);
-    console.log('activeSection', activeSection);
     const sectionTopMap: Record<string, number> = {
         about: 0,
         businesses: 48,
@@ -167,7 +166,7 @@ export const Scroller: React.FC<ScrollerProps> = ({ sections }) => {
                                     <button
                                         onClick={() => scrollToSection(section.id)}
                                         className={cn(
-                                            "flex items-center justify-start px-4 py-3 w-full relative transition-colors text-left",
+                                            `flex items-center justify-${isEn ?"start":"end"} px-4 py-3 w-full relative transition-colors `,
                                             "text-sm font-medium hover:text-[rgba(204,31,65,1)]",
                                             activeSection === section.id
                                                 ? "text-[rgba(30,57,94,1)]"

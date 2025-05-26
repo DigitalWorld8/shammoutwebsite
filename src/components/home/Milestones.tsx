@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SectionHeader } from "../ui/SectionHeader";
 import {
   Carousel,
@@ -23,6 +23,7 @@ export const Milestones: React.FC = ({ data, description, title, type }) => {
   // Inside your component:
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
+  const autoplayDelay = 3000; // 3 seconds
 
   React.useEffect(() => {
     if (!api) return
@@ -47,9 +48,9 @@ export const Milestones: React.FC = ({ data, description, title, type }) => {
     setTimeout(() => {
       setExpandedIndex(index); // after animation
       setClickLocked(false);   // unlock clicks after 1 second
-    }, 1000); // 1 second lock duration
+    }, 300); // 1 second lock duration
   };
-  
+
   const carouselDesktop = (
     <div className="w-full mt-[60px] max-md:mt-10 flex gap-2">
       {milestones.map((milestone, index) => (
@@ -95,6 +96,31 @@ export const Milestones: React.FC = ({ data, description, title, type }) => {
       ))}
     </div>
   );
+  useEffect(() => {
+    if (!api) return;
+
+    const interval = setInterval(() => {
+      const slideCount = milestones.length;
+      const nextIndex = (current + 1) % slideCount;
+      api.scrollTo(nextIndex);
+    }, autoplayDelay);
+
+    return () => clearInterval(interval);
+  }, [api, current, milestones.length]);
+  useEffect(() => {
+    if (!api) return;
+
+    const onSelect = () => {
+      setCurrent(api.selectedScrollSnap());
+    };
+
+    api.on('select', onSelect);
+    onSelect(); // Set initial index
+
+    return () => {
+      api.off('select', onSelect);
+    };
+  }, [api]);
 
 
 
@@ -139,8 +165,10 @@ export const Milestones: React.FC = ({ data, description, title, type }) => {
                     key={index}
                     variant="ghost"
                     size="icon"
-                    className={`w-2 h-2 rounded-full p-0 ${current === index ? 'bg-primary' : 'bg-muted'
-                      }`}
+      className={`w-3 h-3 rounded-full p-0 border transition-all duration-300 
+        ${current === index 
+          ? 'bg-[#cc1f41] border-[#cc1f41]' 
+          : 'bg-transparent border-[#cc1f41] hover:bg-[#cc1f41]/30'}`}
                     onClick={() => api?.scrollTo(index)}
                   />
                 ))}

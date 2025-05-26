@@ -13,8 +13,9 @@ interface ReachUsSectionProps {
   }[];
 }
 
-const ReachUsSection: React.FC<ReachUsSectionProps> = ({ data, description, title ,type}) => {
+const ReachUsSection: React.FC<ReachUsSectionProps> = ({ data, description, title, type }) => {
   const { t } = useTranslation();
+  console.log('data', data);
 
   const logos = [
     "https://cdn.builder.io/api/v1/image/assets/0088fdfbc5f845fe86a1c89db6aed806/5489f83dc83fc9765d1f8e4ce9167011d3243da7?placeholderIfAbsent=true",
@@ -50,8 +51,10 @@ const ReachUsSection: React.FC<ReachUsSectionProps> = ({ data, description, titl
                   phone: item.phone,
                   addresses: item.addresses,
                   website: item.website,
-                  email: item.email
+                  email: item.email,
+                  btnInfo: item.btnInfo
                 }}
+                type={type}
               />
             </div>
           ))}

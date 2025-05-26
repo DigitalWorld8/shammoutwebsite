@@ -27,7 +27,7 @@ export default function CountrySelector({ formik }) {
                 setSearchTerm(""); // clear search after selection
             }}
         >
-            <SelectTrigger className="border-0 text-lg h-full text-[#101828] py-4 pl-[22px] pr-4 max-md:pl-5 rounded-none focus:ring-0">
+            <SelectTrigger className="justify-center gap-3 border-0 text-lg h-full text-[#101828] py-4 pl-[22px] pr-4 max-md:pl-5 rounded-none focus:ring-0">
                 <SelectValue placeholder="Select Country" />
             </SelectTrigger>
 

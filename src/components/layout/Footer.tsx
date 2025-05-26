@@ -12,18 +12,19 @@ export const Footer: React.FC = () => {
 
   let footerLabels: Record<string, string> = {};
   let footerSections: any[] = [];
+  let footerLogo: string[] = [];
   if (footer?.content) {
     try {
       const parsed = JSON.parse(footer.content);
       footerLabels = parsed?.footerContent || {};
       footerSections = parsed?.sections || [];
+      footerLogo = parsed?.logo || [];
     } catch (error) {
       console.error('Failed to parse footer content', error);
     }
   }
 
-  console.log('footerLabels', footerLabels);
-  console.log('footerSections', footerSections);
+
 
   const phones = footerLabels['footer.phone']
   const address = footerLabels['footer.address']
@@ -49,8 +50,7 @@ export const Footer: React.FC = () => {
           <div className="w-[33%] max-md:w-full max-md:ml-0">
             <div className="w-full max-md:mt-10">
               <img
-                src="https://cdn.builder.io/api/v1/image/assets/0088fdfbc5f845fe86a1c89db6aed806/b90175c767f60b77806a9a51f49bdc0376c9758d?placeholderIfAbsent=true"
-                alt={t("footer.logoAlt")}
+                src={footerLogo} alt={t("footer.logoAlt")}
                 className="aspect-[3.08] object-contain w-[203px] max-w-full"
               />
               <p className="text-white text-[13px] font-normal leading-[21px] tracking-[-0.39px] mt-9 max-md:mr-[3px]">
@@ -82,8 +82,8 @@ export const Footer: React.FC = () => {
           <div className="w-[67%] ml-5 max-md:w-full max-md:ml-0">
             <div className="w-full mt-[5px] max-md:max-w-full max-md:mt-10">
               <div className="w-[532px] max-w-full">
-                <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
-                  <div className="w-[30%] max-md:w-full max-md:ml-0">
+                <div className="gap-5 flex  ">
+                  <div className="w-[30%]  max-md:ml-0">
                     <div className="flex flex-col items-stretch text-xs max-md:mt-10">
                       <h3 className="text-white font-bold leading-none uppercase cursor-pointer" onClick={() => {
                         navigate(`/${pos}/${language}/`)
@@ -103,7 +103,7 @@ export const Footer: React.FC = () => {
                       </nav>
                     </div>
                   </div>
-                  <div className="w-2/5 ml-5 max-md:w-full max-md:ml-0">
+                  <div className="w-2/5 ml-5  max-md:ml-0">
                     <div className="flex grow flex-col items-stretch text-xs max-md:mt-10">
                       <h3 className="text-white font-bold leading-none uppercase cursor-pointer" onClick={() => {
                         navigate(`/${pos}/${language}/businesses`)
@@ -124,7 +124,7 @@ export const Footer: React.FC = () => {
                       </nav>
                     </div>
                   </div>
-                  <div className="w-[30%] ml-5 max-md:w-full max-md:ml-0">
+                  <div className="w-[30%] ml-5  max-md:ml-0">
                     <div className="flex flex-col items-stretch text-xs max-md:mt-10">
                       <h3 className="text-white font-bold leading-none uppercase cursor-pointer" onClick={() => {
                         navigate(`/${pos}/${language}/contact`)

@@ -4,8 +4,8 @@ const port3 = 7036
 export const baseUrl = `https://shammoutgroup.com/api`;
 export const b2bBaseUrl = `https://reports.chamwings.com:${port2}`;
 export const posBaseUrl = `https://reports.chamwings.com:${port3}`;
-export const reacapthaSecretKey = '6LeXDkUrAAAAAE5AjjjvIeRzkQqwgt24aLR8P6Bd'
-export const REACAPTCH_SITE_KEY = '6LeXDkUrAAAAAPaYj4NdeYUQWWG_JoSyb5bYQ_9r'
+export const reacapthaSecretKey = '6Lf6h0grAAAAAKNJ6F2_lIUf01bJBDlBVRNILQQW'
+export const REACAPTCH_SITE_KEY = '6Lf6h0grAAAAAIEVXLKETcvn3w1KzvWnXWZ3tr3n'
 
 export const login = `login`;
 export const CustomForm = `CustomForm`;
