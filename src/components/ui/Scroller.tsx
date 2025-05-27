@@ -149,7 +149,7 @@ export const Scroller: React.FC<ScrollerProps> = ({ sections }) => {
                         <div
                             onMouseDown={handleDragStart}
                             className={cn(
-                                "absolute right-0 w-1.5 bg-[rgba(204,31,65,1)] rounded-full z-10 cursor-grab",
+                                "absolute right-0 w-1.5 bg-primary rounded-full z-10 cursor-grab",
                                 isDragging && "cursor-grabbing"
                             )}
                             style={{
@@ -167,7 +167,7 @@ export const Scroller: React.FC<ScrollerProps> = ({ sections }) => {
                                         onClick={() => scrollToSection(section.id)}
                                         className={cn(
                                             `flex items-center justify-${isEn ?"start":"end"} px-4 py-3 w-full relative transition-colors `,
-                                            "text-sm font-medium hover:text-[rgba(204,31,65,1)]",
+                                            "text-sm font-medium hover:text-primary",
                                             activeSection === section.id
                                                 ? "text-[rgba(30,57,94,1)]"
                                                 : "text-[rgba(30,57,94,0.6)]"

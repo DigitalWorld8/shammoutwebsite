@@ -35,7 +35,10 @@ interface PartnerFormProps {
     email?: string;
 }
 
-const PartnerForm: React.FC<PartnerFormProps> = ({ phone, email }) => {
+const PartnerForm: React.FC<PartnerFormProps> = ({description,title, type, data, phone, email }) => {
+    const [partner] = data;
+    const { id, name: nameLabel, email: emailLabel, phoneNumber: phoneNumberLabel, descripe: descripeLabel, ServicesLabel, btn, services: servicesArray } = partner;
+    console.log('data', data);
 
     // Extract country code from full phone number (e.g., "+963935387582")
     function getCountryByPhone(phone: string) {
@@ -177,18 +180,18 @@ const PartnerForm: React.FC<PartnerFormProps> = ({ phone, email }) => {
         <Container>
             <form onSubmit={formik.handleSubmit} className="w-full">
                 <div className="flex items-stretch gap-1 mt-[71px] max-md:mt-10">
-                    <div className="bg-[rgba(204,31,65,1)] flex w-[79px] shrink-0 h-[3px] rounded-[20px]" />
-                    <div className="bg-[rgba(204,31,65,1)] flex w-[22px] shrink-0 h-[3px] rounded-[20px]" />
+                    <div className="bg-primary flex w-[79px] shrink-0 h-[3px] rounded-[20px]" />
+                    <div className="bg-primary flex w-[22px] shrink-0 h-[3px] rounded-[20px]" />
                 </div>
                 <SectionHeader
-                    title={t("partnerForm.title")}
-                    description={t("partnerForm.description")}
+                    title={title}
+                    description={description}
                 />
                 <div className="self-stretch mr-2.5 mt-12 max-md:max-w-full max-md:mt-10">
                     <div className="w-full max-md:max-w-full">
                         <div className="w-full max-md:max-w-full">
                             <label className="text-[rgba(30,57,94,1)] text-[19px] font-semibold leading-none">
-                                {t("name")}
+                                {nameLabel}
                             </label>
                             <input
                                 type="text"
@@ -208,7 +211,7 @@ const PartnerForm: React.FC<PartnerFormProps> = ({ phone, email }) => {
                     <div className="w-full max-md:max-w-full">
                         <div className="w-full max-md:max-w-full">
                             <label className="text-[rgba(30,57,94,1)] text-[19px] font-semibold leading-none">
-                                {t("partnerForm.email")}
+                                {emailLabel}
                             </label>
                             <input
                                 type="email"
@@ -229,7 +232,7 @@ const PartnerForm: React.FC<PartnerFormProps> = ({ phone, email }) => {
                     <div className="w-full max-md:max-w-full">
                         <div className="w-full max-md:max-w-full">
                             <label className="text-[rgba(30,57,94,1)] text-[19px] font-semibold leading-none">
-                                {t("partnerForm.phone")}
+                                {phoneNumberLabel}
 
                             </label>
                             <div className="items-stretch shadow-[0px_1.352px_2.703px_0px_rgba(16,24,40,0.05)] bg-white flex w-full overflow-hidden text-[22px] font-normal flex-wrap mt-2 rounded-[10.813px] max-md:max-w-full border border-gray-200">
@@ -257,7 +260,7 @@ const PartnerForm: React.FC<PartnerFormProps> = ({ phone, email }) => {
                     <div className="w-full flex-1 max-md:max-w-full">
                         <div className="w-full flex-1 max-md:max-w-full">
                             <label className="text-[rgba(30,57,94,1)] text-[19px] font-semibold leading-none">
-                                {t("partnerForm.businessDescription")}
+                                {descripeLabel}
 
                             </label>
                             <textarea
@@ -275,7 +278,7 @@ const PartnerForm: React.FC<PartnerFormProps> = ({ phone, email }) => {
                 </div>
 
                 <div className="text-[rgba(30,57,94,1)] text-[19px] font-semibold leading-none mt-[33px]">
-                    {t("partnerForm.services")}
+                    {ServicesLabel}
                 </div>
                 {formik.errors.services && typeof formik.errors.services === 'string' && (
                     <div className="text-red-500 text-sm mt-1">{formik.errors.services}</div>
@@ -317,9 +320,9 @@ const PartnerForm: React.FC<PartnerFormProps> = ({ phone, email }) => {
                     <button
                         type="button"
                         onClick={() => setShowModal(true)}
-                        className="self-stretch bg-[rgba(204,31,65,1)] shadow-[0px_1px_3px_rgba(16,24,40,0.05)] border min-w-60 w-full gap-[11px] overflow-hidden flex-1 shrink basis-[0%] px-[27px] py-4 rounded-[11px] border-[rgba(204,31,65,1)] border-solid max-md:max-w-full max-md:px-5 hover:bg-[rgba(184,28,59,1)] transition-colors"
+                        className="self-stretch bg-primary shadow-[0px_1px_3px_rgba(16,24,40,0.05)] border min-w-60 w-full gap-[11px] overflow-hidden flex-1 shrink basis-[0%] px-[27px] py-4 rounded-[11px] border-[rgba(204,31,65,1)] border-solid max-md:max-w-full max-md:px-5 hover:bg-secondary transition-colors"
                     >
-                        {t("partnerForm.getStarted")}
+                        {btn}
 
                     </button>
                 </div>

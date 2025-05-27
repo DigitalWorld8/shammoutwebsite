@@ -20,9 +20,8 @@ const ContactCard: React.FC<ContactCardProps> = ({ logo, contactInfo, type }) =>
 
   const navigate = useNavigate()
   const btnStyles = {
-    outlined: "px-6 py-2 border-2 border-rose-600 text-rose-600 rounded-lg font-semibold hover:bg-rose-600 hover:text-white transition-colors",
-    contained: "px-6 py-2  border-2 border-rose-600 bg-rose-600 text-white rounded-lg font-semibold hover:bg-rose-700 transition-colors",
-    // add more styles if you want
+    outlined: " px-6 py-2 mt-4  border-2 border-rose-600 text-rose-600 rounded-lg font-semibold hover:bg-rose-600 hover:text-white transition-colors",
+    contained: "px-6 py-2 mt-4  border-2 border-rose-600 bg-rose-600 text-white rounded-lg font-semibold hover:bg-rose-700 transition-colors",
   };
   return (
     <div className=" h-[350px] bg-white shadow-[0px_10px_31px_rgba(215,228,249,0.25)] border  w-full flex flex-col justify-between text-sm text-[rgba(30,57,94,1)] font-normal tracking-[-0.43px] leading-loose mx-auto p-[30px] rounded-[17px] border-[rgba(17,17,17,0.1)] border-solid h-full">
@@ -44,7 +43,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ logo, contactInfo, type }) =>
             />
             <a
               href={`tel:${contactInfo.phone}`}
-              className="hover:text-[rgba(204,31,65,1)] transition-colors"
+              className="hover:text-secondary transition-colors"
               style={{ direction: "ltr" }}
             >
               {contactInfo.phone}
@@ -57,7 +56,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ logo, contactInfo, type }) =>
             <MessageIcon />
             <a
               href={`mailto:${contactInfo.email}`}
-              className="hover:text-[rgba(204,31,65,1)] transition-colors"
+              className="hover:text-secondary transition-colors"
             >
               {contactInfo.email}
             </a>
@@ -85,7 +84,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ logo, contactInfo, type }) =>
               href={`https://${contactInfo.website.trim()}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[rgba(204,31,65,1)] transition-colors"
+              className="hover:text-secondary transition-colors"
             >
               {contactInfo.website}
             </a>

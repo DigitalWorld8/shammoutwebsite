@@ -44,7 +44,7 @@ const NewsletterFormWithCaptcha = () => {
     <div>
       <form
         onSubmit={formik.handleSubmit}
-        className="flex w-full items-stretch gap-2 text-[10px] leading-none mt-[33px]"
+        className="flex w-full items-stretch gap-2 text-[10px] leading-none mt-[15px]"
       >
         <input
           type="email"
@@ -58,7 +58,7 @@ const NewsletterFormWithCaptcha = () => {
         <button
           onClick={() => setShowModal(true)}
           type="button"
-          className="bg-[rgba(204,31,65,1)] text-white px-4 py-2 rounded-md"
+          className="bg-primary text-white px-4 py-2 rounded-md"
         >
           {t('Submit')}
         </button>

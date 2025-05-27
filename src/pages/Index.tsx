@@ -107,6 +107,8 @@ const Index = () => {
         return <AssistanceSection data={data} type={type} />;
       case 'Main Carousel':
         return <Hero data={data} type={type} />;
+      case 'partner us form':
+        return <PartnerForm title={title} description={description} data={data} type={type} phone={phone} email={email} />;
       default:
         return null;
     }
@@ -149,13 +151,13 @@ const Index = () => {
               })}
 
               {/* Inject PartnerForm after the first segment if we're on the partner page */}
-              {pageUrlName === 'partner' && index === 0 && (
+              {/* {pageUrlName === 'partner' && index === 0 && (
                 <Layout>
                   <Container>
                     <PartnerForm phone={phone} email={email} />
                   </Container>
                 </Layout>
-              )}
+              )} */}
             </div>
           ))}
 

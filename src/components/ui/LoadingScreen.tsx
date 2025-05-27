@@ -12,7 +12,7 @@ export const LoadingScreen = () => {
                 />
                 <div className="mt-4">
                     <div className="h-1 w-32 overflow-hidden bg-gray-200 rounded-full">
-                        <div className="h-full w-full bg-[rgba(204,31,65,1)] animate-[slide-in-right_1.5s_ease-in-out_infinite]" />
+                        <div className="h-full w-full bg-primary animate-[slide-in-right_1.5s_ease-in-out_infinite]" />
                     </div>
                 </div>
             </div>

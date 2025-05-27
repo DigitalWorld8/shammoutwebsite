@@ -29,7 +29,7 @@ export const MilestoneCard: React.FC<MilestoneCardProps> = ({
         flex flex-col transition-all duration-700 ease-in-out
         transform-gpu
       ">
-        <div className="text-[rgba(204,31,65,1)] font-extrabold break-words">
+        <div className="text-primary font-extrabold break-words">
           {year || ''}
         </div>
         <div className="font-bold mt-[18px] break-words">

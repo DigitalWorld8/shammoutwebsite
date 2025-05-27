@@ -31,7 +31,7 @@ const AssistanceSection: React.FC = ({ data, type }) => {
             </a>
             <a
               href="tel:+96311926"
-              className="bg-[rgba(204,31,65,1)] border flex min-h-[41px] items-center gap-1.5 justify-center px-[22px] py-[13px] rounded-md border-[rgba(204,31,65,1)] border-solid hover:bg-[rgba(184,28,59,1)] transition-colors max-md:px-5"
+              className="bg-primary border flex min-h-[41px] items-center gap-1.5 justify-center px-[22px] py-[13px] rounded-md border-primary border-solid hover:bg-secondary transition-colors max-md:px-5"
             >
               <img
                 src="https://cdn.builder.io/api/v1/image/assets/0088fdfbc5f845fe86a1c89db6aed806/1a6ba54892ad6337a8fb3bb46815a360cd68559e?placeholderIfAbsent=true"

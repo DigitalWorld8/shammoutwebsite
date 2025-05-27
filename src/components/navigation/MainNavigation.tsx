@@ -28,7 +28,6 @@ export const MainNavigation: React.FC<MainNavigationProps> = ({
         }
     }
 
-    console.log('header', header);
 
     return (
         <>

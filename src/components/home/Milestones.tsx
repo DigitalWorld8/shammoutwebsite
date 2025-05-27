@@ -85,7 +85,7 @@ export const Milestones: React.FC = ({ data, description, title, type }) => {
             ">
               <div className="
                 transform -rotate-90 whitespace-nowrap 
-                text-[rgba(204,31,65,1)] font-extrabold text-lg
+                text-primary font-extrabold text-lg
                 transition-all duration-300
               ">
                 {milestone.year}
@@ -165,10 +165,10 @@ export const Milestones: React.FC = ({ data, description, title, type }) => {
                     key={index}
                     variant="ghost"
                     size="icon"
-      className={`w-3 h-3 rounded-full p-0 border transition-all duration-300 
-        ${current === index 
-          ? 'bg-[#cc1f41] border-[#cc1f41]' 
-          : 'bg-transparent border-[#cc1f41] hover:bg-[#cc1f41]/30'}`}
+                    className={`w-3 h-3 rounded-full p-0 border transition-all duration-300 
+        ${current === index
+                        ? 'bg-[#cc1f41] border-[#cc1f41]'
+                        : 'bg-transparent border-[#cc1f41] hover:bg-[#cc1f41]/30'}`}
                     onClick={() => api?.scrollTo(index)}
                   />
                 ))}

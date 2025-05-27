@@ -64,7 +64,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({
         {subtitle}
       </p>
       <button
-        className="bg-[rgba(204,31,65,1)] shadow-lg text-sm md:text-base font-bold text-center tracking-[0.16px] leading-[1.2] mt-[25px] px-6 md:px-[31px] py-3 md:py-2.5 rounded-xl hover:bg-[rgba(184,28,59,1)] transition-colors"
+        className="bg-primary shadow-lg text-sm md:text-base font-bold text-center tracking-[0.16px] leading-[1.2] mt-[25px] px-6 md:px-[31px] py-3 md:py-2.5 rounded-xl hover:bg-secondary transition-colors"
         style={{ width: `${buttonWidth}px` }}
         onClick={handleClickButton}
       >

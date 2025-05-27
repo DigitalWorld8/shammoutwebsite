@@ -29,8 +29,8 @@ const ReachUsSection: React.FC<ReachUsSectionProps> = ({ data, description, titl
   return (
     <section id={type} className="mt-[71px] max-md:mt-10">
       <div className="flex items-stretch gap-1 ml-[11px] max-md:ml-2.5">
-        <div className="bg-[rgba(204,31,65,1)] flex w-[79px] shrink-0 h-[3px] rounded-[20px]" />
-        <div className="bg-[rgba(204,31,65,1)] flex w-[22px] shrink-0 h-[3px] rounded-[20px]" />
+        <div className="bg-primary flex w-[79px] shrink-0 h-[3px] rounded-[20px]" />
+        <div className="bg-primary flex w-[22px] shrink-0 h-[3px] rounded-[20px]" />
       </div>
 
       <h2 className="text-[rgba(30,57,94,1)] text-[32px] font-extrabold leading-[1.1] tracking-[-0.96px] ml-[11px] mt-[23px] max-md:ml-2.5">

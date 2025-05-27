@@ -31,7 +31,7 @@ export const About: React.FC = ({ data, description, title, type }) => {
               alt="Growth & Leadership"
               className="w-full h-full object-cover aspect-[0.8] sm:aspect-[1.2] rounded-xl"
             />
-            <div className="absolute bottom-0 left-0 right-0 bg-[rgba(204,31,65,1)] p-6 text-white rounded-t-xl">
+            <div className="absolute bottom-0 left-0 right-0 bg-primary p-6 text-white rounded-t-xl">
               <h3 className="text-xl font-bold mb-3">
                 {growthData?.title || t("aboutshammoutsection.growth_title")}
               </h3>
@@ -50,7 +50,7 @@ export const About: React.FC = ({ data, description, title, type }) => {
                 alt="Our Mission"
                 className="absolute w-full h-full object-cover inset-0 rounded-xl"
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-[rgba(204,31,65,1)] text-white px-6 py-5 rounded-t-xl z-10">
+              <div className="absolute bottom-0 left-0 right-0 bg-primary text-white px-6 py-5 rounded-t-xl z-10">
                 <h3 className="text-lg font-bold">
                   {missionData?.title || t("aboutshammoutsection.mission_title")}
                 </h3>
@@ -67,7 +67,7 @@ export const About: React.FC = ({ data, description, title, type }) => {
                 alt="Our Vision"
                 className="absolute w-full h-full object-cover inset-0 rounded-xl"
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-[rgba(204,31,65,1)] text-white px-6 py-5 rounded-t-xl z-10">
+              <div className="absolute bottom-0 left-0 right-0 bg-primary text-white px-6 py-5 rounded-t-xl z-10">
                 <h3 className="text-lg font-bold">
                   {visionData?.title || t("aboutshammoutsection.vision_title")}
                 </h3>
